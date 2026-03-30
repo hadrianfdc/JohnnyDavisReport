@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JDGM — Website Consulting Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D98A;
+    --gold-pale: #FBF5E6;
+    --navy: #0D1B2A;
+    --navy-mid: #1C3149;
+    --navy-light: #2B4A6E;
+    --cream: #F9F6F0;
+    --red: #C0392B;
+    --red-light: #FDEDEC;
+    --green: #1A6B3C;
+    --green-light: #E9F5EE;
+    --amber: #B7620A;
+    --amber-light: #FEF6E7;
+    --text: #1A1A1A;
+    --muted: #5A5A5A;
+    --border: #E2D9C8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  /* HEADER */
+  .report-header {
+    background: var(--navy);
+    color: white;
+    padding: 64px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 50%;
+  }
+  .report-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .report-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    color: white;
+    line-height: 1.15;
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+  .report-header h1 span { color: var(--gold); }
+  .report-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .meta-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+  }
+  .meta-item strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* SCORE CARDS */
+  .score-section {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 40px 48px;
+  }
+  .score-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .score-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    background: var(--cream);
+  }
+  .score-card-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .score-bar-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+  .score-number {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .score-num-red { color: var(--red); }
+  .score-num-amber { color: var(--amber); }
+  .score-num-green { color: var(--green); }
+  .bar-red { background: var(--red); }
+  .bar-amber { background: var(--amber); }
+  .bar-green { background: var(--green); }
+
+  /* MAIN CONTENT */
+  .content-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* SECTION HEADERS */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.25;
+    border-bottom: 2px solid var(--gold-light);
+    padding-bottom: 16px;
+  }
+
+  /* CALLOUT BOXES */
+  .callout {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid transparent;
+  }
+  .callout-red {
+    background: var(--red-light);
+    border-left-color: var(--red);
+  }
+  .callout-amber {
+    background: var(--amber-light);
+    border-left-color: var(--amber);
+  }
+  .callout-green {
+    background: var(--green-light);
+    border-left-color: var(--green);
+  }
+  .callout-navy {
+    background: #EEF3F8;
+    border-left-color: var(--navy-light);
+  }
+  .callout-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .callout-red .callout-label { color: var(--red); }
+  .callout-amber .callout-label { color: var(--amber); }
+  .callout-green .callout-label { color: var(--green); }
+  .callout-navy .callout-label { color: var(--navy-light); }
+  .callout p, .callout ul { font-size: 14px; color: var(--text); }
+  .callout ul { padding-left: 18px; }
+  .callout ul li { margin-bottom: 6px; }
+
+  /* RECOMMENDATION CARDS */
+  .rec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) { .rec-grid { grid-template-columns: 1fr; } }
+  .rec-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    background: white;
+  }
+  .rec-card-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .rec-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .rec-card p, .rec-card ul {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .rec-card ul { padding-left: 16px; }
+  .rec-card ul li { margin-bottom: 4px; }
+
+  /* CMS COMPARISON TABLE */
+  .cms-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 16px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .cms-table thead th {
+    background: var(--navy);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .cms-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .cms-table tbody tr:last-child td { border-bottom: none; }
+  .cms-table tbody tr:nth-child(even) td { background: var(--cream); }
+  .recommended-badge {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* ARCHITECTURE DIAGRAM */
+  .arch-wrap {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .arch-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  /* ROADMAP */
+  .roadmap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 640px) { .roadmap { grid-template-columns: 1fr; } }
+  .phase-card {
+    border-radius: 14px;
+    padding: 28px 22px;
+    border: 1px solid transparent;
+    position: relative;
+  }
+  .phase-1 { background: var(--green-light); border-color: #A8D5B8; }
+  .phase-2 { background: var(--amber-light); border-color: #F0C280; }
+  .phase-3 { background: #EEF3F8; border-color: #B3C8DF; }
+  .phase-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.15;
+    position: absolute;
+    top: 16px; right: 18px;
+  }
+  .phase-1 .phase-num { color: var(--green); }
+  .phase-2 .phase-num { color: var(--amber); }
+  .phase-3 .phase-num { color: var(--navy); }
+  .phase-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .phase-1 .phase-tag { color: var(--green); }
+  .phase-2 .phase-tag { color: var(--amber); }
+  .phase-3 .phase-tag { color: var(--navy-light); }
+  .phase-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--navy);
+  }
+  .phase-card ul {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 18px;
+  }
+  .phase-card ul li { margin-bottom: 6px; }
+  .phase-timeline {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 16px;
+  }
+  .phase-1 .phase-timeline { background: var(--green); color: white; }
+  .phase-2 .phase-timeline { background: var(--amber); color: white; }
+  .phase-3 .phase-timeline { background: var(--navy-light); color: white; }
+
+  /* TECH STACK */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .stack-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .stack-item-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .stack-item-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .stack-item-why {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  .report-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.45);
+    padding: 32px 48px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .report-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* VERDICT BANNER */
+  .verdict {
+    background: var(--navy);
+    color: white;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--gold);
+  }
+  .verdict-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .verdict p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* PRIORITY TAGS */
+  .priority {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .p-critical { background: var(--red); color: white; }
+  .p-high { background: var(--amber); color: white; }
+  .p-med { background: #647D95; color: white; }
+
+  /* PAGE NAV */
+  .page-nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-tab {
+    padding: 16px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-tab:hover { color: var(--navy); border-bottom-color: var(--border); }
+
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  p { margin-bottom: 14px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+  strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <span class="report-tag">Senior Consultant Report · March 2026</span>
+  <h1>Website Audit &amp;<br><span>Rebuild Strategy</span></h1>
+  <p class="report-subtitle">A full UX, marketing, and technology assessment for Johnny Davis Global Missions — with an actionable roadmap to maximize donations, volunteer growth, and digital reach.</p>
+  <div class="meta-row">
+    <div class="meta-item"><strong>Organization</strong> · Johnny Davis Global Missions</div>
+    <div class="meta-item"><strong>URL</strong> · johnnydavisglobalmissions.org</div>
+    <div class="meta-item"><strong>Focus</strong> · Philippines humanitarian work</div>
+    <div class="meta-item"><strong>Current platform</strong> · The Local Discovery (locked CMS)</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="page-nav">
+  <a href="#audit" class="nav-tab">Audit</a>
+  <a href="#problems" class="nav-tab">Problems</a>
+  <a href="#cms" class="nav-tab">CMS &amp; Admin</a>
+  <a href="#marketing" class="nav-tab">Marketing</a>
+  <a href="#features" class="nav-tab">Features</a>
+  <a href="#uxui" class="nav-tab">UI/UX</a>
+  <a href="#architecture" class="nav-tab">Architecture</a>
+  <a href="#roadmap" class="nav-tab">Roadmap</a>
+</nav>
+
+<!-- SCORES -->
+<div class="score-section">
+  <div class="score-label">Current Site Health Scores</div>
+  <div class="scores-grid">
+    <div class="score-card">
+      <div class="score-card-label">UX / Usability</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-amber" style="width:42%"></div></div>
+      <div class="score-number score-num-amber">4.2 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">UI / Visual Design</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-red" style="width:35%"></div></div>
+      <div class="score-number score-num-red">3.5 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Donation Funnel</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-red" style="width:30%"></div></div>
+      <div class="score-number score-num-red">3.0 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Content Strategy</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-amber" style="width:40%"></div></div>
+      <div class="score-number score-num-amber">4.0 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Mobile Experience</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-amber" style="width:45%"></div></div>
+      <div class="score-number score-num-amber">4.5 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">SEO Readiness</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-red" style="width:28%"></div></div>
+      <div class="score-number score-num-red">2.8 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Admin / CMS Control</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-red" style="width:10%"></div></div>
+      <div class="score-number score-num-red">1.0 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Impact / Trust Signals</div>
+      <div class="score-bar-track"><div class="score-bar-fill bar-amber" style="width:38%"></div></div>
+      <div class="score-number score-num-amber">3.8 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content-wrap">
+
+  <!-- VERDICT -->
+  <div class="verdict" id="audit">
+    <div class="verdict-label">Consultant's Verdict</div>
+    <p>This website has a <strong>good heart but a weak digital presence.</strong> The cause is compelling, the testimonials are real, and the team is doing legitimate humanitarian work. But the site is built on a <strong>locked, developer-dependent platform</strong> that prevents growth — and the donation flow, visual design, and content strategy are all leaving significant engagement on the table. The good news: the gap between where this site is and where it needs to be is entirely closeable with the right rebuild strategy.</p>
+  </div>
+
+  <!-- SECTION 1: AUDIT -->
+  <div class="section">
+    <div class="section-eyebrow">Section 01</div>
+    <div class="section-title">Current Website Audit</div>
+
+    <div class="callout callout-red">
+      <div class="callout-label">🔴 Critical — Platform Dependency</div>
+      <p>The site is hosted on <strong>The Local Discovery</strong> — a proprietary platform. The client has zero ability to update pages, change images, add campaigns, or manage content independently. Every change requires paying a developer. This is a fundamental problem that blocks all marketing and growth.</p>
+    </div>
+
+    <div class="callout callout-red">
+      <div class="callout-label">🔴 Critical — Broken Donation UX</div>
+      <ul>
+        <li>Donation "packages" send users to <strong>raw Stripe payment links</strong> — no branded checkout, no confirmation page, no thank-you email automation.</li>
+        <li>One-time donations go to a generic Stripe link with zero context.</li>
+        <li>There is a <strong>QR code image on screen</strong> — this is a physical-world workaround embedded in a digital page. Completely ineffective online.</li>
+        <li>No donor receipt email, no recurring dashboard, no donation tracking for donors.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-label">🟡 High — Homepage Issues</div>
+      <ul>
+        <li>The hero section leads with a <strong>hashtag-heavy block of social media copy</strong> — this is pasted from Instagram/Facebook, not written for a website. Feels unprofessional.</li>
+        <li>The mission statement is <strong>duplicated twice</strong> on the homepage — "Our Mission" and "Your Mission" contain nearly identical copy.</li>
+        <li>Stats (157 volunteers, $45,624 raised) are shown but <strong>not contextualized</strong> — no year, no "what this achieved," no emotional anchor.</li>
+        <li>Navigation is flat and generic — "Make a Difference" is vague; "Johnny Davis Ministries" creates brand confusion alongside "Johnny Davis Global Missions."</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-label">🟡 High — Content & SEO Gaps</div>
+      <ul>
+        <li>No blog, no news, no updates — Google has nothing to index beyond 5 thin pages.</li>
+        <li>No meta descriptions, no structured data, no Open Graph tags confirmed.</li>
+        <li>Page title is generic: "Non-Profit Organization near Suwanee, GA" — misses every keyword opportunity related to Philippines missions, child hunger, disaster relief.</li>
+        <li>Images are hosted on a CDN with non-descriptive filenames — no alt text strategy evident.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-navy">
+      <div class="callout-label">🔵 Observe — What's Working</div>
+      <ul>
+        <li>Three genuine, location-specific testimonials — rare and valuable for a small nonprofit.</li>
+        <li>Real field photos from the Philippines — authentic visual content.</li>
+        <li>Clear cause areas: hunger, disaster relief, clean water, trafficking, education, medical.</li>
+        <li>Stripe integration is already live — just needs a proper wrapper.</li>
+        <li>The $7.99/month entry point is smart — low friction recurring giving.</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 2: PROBLEMS -->
+  <div class="section" id="problems">
+    <div class="section-eyebrow">Section 02</div>
+    <div class="section-title">Core Problems Diagnosed</div>
+
+    <div class="rec-grid">
+      <div class="rec-card">
+        <span class="rec-card-icon">🔒</span>
+        <h4><span class="priority p-critical">Critical</span> Zero Client Control</h4>
+        <p>Every content change requires a developer. The client cannot launch a campaign, post an update, or add a donation appeal without paying for it. This alone kills agility and marketing speed.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">💸</span>
+        <h4><span class="priority p-critical">Critical</span> Donation Funnel Leaks</h4>
+        <p>Raw Stripe links = no storytelling, no social proof at checkout, no thank-you flow, no email capture, no repeat donor cultivation. Every donor who clicks "Donate" exits the brand experience immediately.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">📉</span>
+        <h4><span class="priority p-high">High</span> No Email List Growth</h4>
+        <p>There is no newsletter signup anywhere on the site. This means zero ability to nurture donors, share impact updates, or re-engage lapsed supporters. Email is the highest-ROI channel for nonprofits.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🗺️</span>
+        <h4><span class="priority p-high">High</span> No Volunteer Pipeline</h4>
+        <p>"Contact us to learn about volunteering" is not a system. There's no intake form, no upcoming events calendar, no way to track interest or organize volunteer capacity.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">📸</span>
+        <h4><span class="priority p-high">High</span> Weak Impact Storytelling</h4>
+        <p>The site lists what it does, but doesn't show outcomes. No story format ("Here's how Maria's family got clean water because of your donation"), no impact metrics page, no gallery of field work.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🔍</span>
+        <h4><span class="priority p-high">High</span> Invisible to Search</h4>
+        <p>With 5 thin pages and no blog, this site cannot rank for any meaningful terms. People searching "Philippines child hunger nonprofit," "disaster relief Philippines donation," or "volunteer Philippines mission" will never find this organization.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 3: CMS -->
+  <div class="section" id="cms">
+    <div class="section-eyebrow">Section 03 · Highest Priority</div>
+    <div class="section-title">CMS &amp; Admin System Recommendation</div>
+
+    <div class="callout callout-green">
+      <div class="callout-label">✅ Primary Recommendation: WordPress + Elementor Pro</div>
+      <p><strong>WordPress powers 43% of all websites</strong> and is the dominant platform for nonprofits globally. With Elementor Pro as the page builder and GiveWP as the donation plugin, the client gets full control of every page, image, post, campaign, and form — no developer needed for content changes.</p>
+    </div>
+
+    <table class="cms-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Client Control</th>
+          <th>Donation Tools</th>
+          <th>Cost/yr</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>WordPress + Elementor Pro</strong> <span class="recommended-badge">Recommended</span></td>
+          <td>Full — edit any page, image, post, menu without a developer</td>
+          <td>GiveWP plugin — campaigns, recurring, goal tracking, donor portal</td>
+          <td>~$200–400</td>
+          <td>Best balance of power, cost, and ease for nonprofits</td>
+        </tr>
+        <tr>
+          <td><strong>Wix</strong></td>
+          <td>Good drag-and-drop, but limited extensibility</td>
+          <td>Basic only — not purpose-built for nonprofit campaigns</td>
+          <td>~$200–300</td>
+          <td>Fine for simple sites; outgrown quickly</td>
+        </tr>
+        <tr>
+          <td><strong>Squarespace</strong></td>
+          <td>Good visual editor, rigid templates</td>
+          <td>Weak — relies on third-party embeds</td>
+          <td>~$200–300</td>
+          <td>Better design defaults, worse functionality</td>
+        </tr>
+        <tr>
+          <td><strong>Webflow + CMS</strong></td>
+          <td>Excellent, requires some learning curve</td>
+          <td>Requires third-party integrations</td>
+          <td>~$300–500</td>
+          <td>Great if developer is involved; overkill otherwise</td>
+        </tr>
+        <tr>
+          <td><strong>Current Platform (The Local Discovery)</strong></td>
+          <td>Zero — locked, developer-gated</td>
+          <td>None — raw Stripe links only</td>
+          <td>Ongoing dev fees</td>
+          <td>Must exit as soon as possible</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>What the client will be able to manage independently after the rebuild:</strong></p>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <h4>📄 Pages & Content</h4>
+        <ul>
+          <li>Edit any page text or images without a developer</li>
+          <li>Create new campaign pages for each mission</li>
+          <li>Add/remove navigation items</li>
+          <li>Publish blog posts and mission updates</li>
+        </ul>
+      </div>
+      <div class="rec-card">
+        <h4>💳 Donations</h4>
+        <ul>
+          <li>Create new donation campaigns with goals & progress bars</li>
+          <li>Set up recurring vs. one-time giving options</li>
+          <li>View donor history and export reports</li>
+          <li>Send automated tax receipts and thank-you emails</li>
+        </ul>
+      </div>
+      <div class="rec-card">
+        <h4>📣 Marketing</h4>
+        <ul>
+          <li>Manage email newsletter list (Mailchimp or Mailpoet integration)</li>
+          <li>Create and launch campaign landing pages</li>
+          <li>Embed social media feeds and social share buttons</li>
+          <li>Publish impact reports and story posts</li>
+        </ul>
+      </div>
+      <div class="rec-card">
+        <h4>📸 Media</h4>
+        <ul>
+          <li>Upload and organize field photos by mission/location</li>
+          <li>Manage a photo/video gallery</li>
+          <li>Replace hero images and banner images any time</li>
+          <li>Add YouTube or Vimeo embeds to any page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 4: MARKETING -->
+  <div class="section" id="marketing">
+    <div class="section-eyebrow">Section 04</div>
+    <div class="section-title">Marketing &amp; Conversion Strategy</div>
+
+    <div class="callout callout-red">
+      <div class="callout-label">Donation Funnel — Rebuild Completely</div>
+      <ul>
+        <li><strong>Replace raw Stripe links</strong> with branded donation pages built inside WordPress using GiveWP — each cause gets its own page with a story, photos, goal meter, and impact breakdown.</li>
+        <li>Add <strong>suggested amounts with context</strong>: "$7.99 feeds 1 child for a month," "$29.99 feeds a family," "$99 sends medicine to a village" — not just dollar amounts.</li>
+        <li>Add a <strong>post-donation thank-you page</strong> with a personal message from Pastor Johnny, a shareable social card, and a "tell a friend" prompt.</li>
+        <li>Trigger an <strong>automated email welcome sequence</strong> for every new donor (receipt → mission story → impact update → 30-day follow-up).</li>
+        <li>Add a <strong>recurring donor program</strong> with a name: "The Compassion Circle" or "Feed a Generation Monthly Partners."</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-label">Email Marketing — Start Immediately</div>
+      <ul>
+        <li><strong>Add newsletter signup everywhere:</strong> homepage hero, footer, after blog posts, on the donation page, at the end of impact stories.</li>
+        <li>Offer a <strong>lead magnet</strong>: "Download our 2025 Mission Impact Report" or "See the faces your giving has fed" (a photo report PDF).</li>
+        <li>Use <strong>Mailchimp (free up to 500 contacts)</strong> connected to the WordPress site — fully manageable by the client.</li>
+        <li>Send a monthly "Field Update" email — photos from the Philippines, a story, and a call to action. This alone can double repeat donations.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-navy">
+      <div class="callout-label">SEO — Long-Term Organic Growth</div>
+      <ul>
+        <li>Rewrite all page title tags and meta descriptions with targeted keywords: "Philippines child hunger relief," "disaster relief Cebu Philippines," "feed Filipino children nonprofit."</li>
+        <li>Create a <strong>blog/news section</strong> with monthly mission updates — each post targets a searchable topic and builds domain authority over time.</li>
+        <li>Add <strong>structured data markup</strong> (nonprofit schema) so Google knows this is a registered charity.</li>
+        <li>Set up <strong>Google for Nonprofits</strong> — free $10,000/month in Google Ads for nonprofits. Currently not in use. This alone could drive hundreds of new donors monthly.</li>
+        <li>Register in nonprofit directories: Charity Navigator, GuideStar/Candid, GiveWell, GlobalGiving.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-label">Storytelling — The Highest-Converting Content Type</div>
+      <ul>
+        <li>Create a dedicated <strong>"Stories of Impact" section</strong> with individual stories: real names (with permission), before/after situations, photos, and outcomes.</li>
+        <li>Add a <strong>featured story on the homepage</strong> — rotating, with a "Read Maria's Story" CTA that leads directly to a donation ask.</li>
+        <li>Film short 1–2 minute videos in the Philippines — even phone footage with subtitles converts extraordinarily well for mission nonprofits.</li>
+        <li>Feature <strong>Pastor Johnny's personal testimony</strong> as a prominent "Why I started this" narrative — founders' stories build massive trust.</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 5: FEATURES -->
+  <div class="section" id="features">
+    <div class="section-eyebrow">Section 05</div>
+    <div class="section-title">Feature Enhancements to Build</div>
+
+    <div class="rec-grid">
+      <div class="rec-card">
+        <span class="rec-card-icon">📰</span>
+        <h4>Blog / Mission Updates</h4>
+        <p>Monthly field reports, mission stories, and prayer requests. Builds SEO, keeps supporters engaged, and gives donors something to share on social media.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🙋</span>
+        <h4>Volunteer Intake System</h4>
+        <p>A form where prospective volunteers enter name, location, skills, and availability. Feeds a spreadsheet or CRM. Currently there's just "contact us." This loses hundreds of volunteer signups annually.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">📅</span>
+        <h4>Events Calendar</h4>
+        <p>List upcoming outreach events, fundraisers, and mission trips. Allow visitors to RSVP or register — even for virtual prayer events. Creates ongoing reasons to return to the site.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">📊</span>
+        <h4>Impact Dashboard</h4>
+        <p>A visual "Impact Counter" on the homepage: meals served, families helped, wells built, children in school. Updated monthly. Nothing converts donors like seeing concrete numbers grow over time.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🖼️</span>
+        <h4>Field Photo Gallery</h4>
+        <p>A well-organized gallery by mission, year, or location. Show the real work happening on the ground. Currently field photos exist but are scattered and unsearchable.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🌏</span>
+        <h4>Multi-Language Support</h4>
+        <p>Add Filipino (Tagalog) as a language option. Many donors, community members, and potential Filipino-American supporters would engage far more with a site in their language. WPML plugin handles this in WordPress.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🏷️</span>
+        <h4>Campaign-Specific Pages</h4>
+        <p>Instead of one generic "Make a Difference" page, create individual campaign pages: "Feed Filipino Children," "Cebu Earthquake Relief," "Uganda Water Wells." Each tells a specific story with a specific giving goal.</p>
+      </div>
+      <div class="rec-card">
+        <span class="rec-card-icon">🛡️</span>
+        <h4>Trust & Transparency Page</h4>
+        <p>Financial summary, 990 tax form link, board of directors, IRS determination letter, and partner organizations. This is what institutional donors and grant-makers look for before committing funds.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 6: UI/UX -->
+  <div class="section" id="uxui">
+    <div class="section-eyebrow">Section 06</div>
+    <div class="section-title">UI / UX Improvement Plan</div>
+
+    <div class="callout callout-red">
+      <div class="callout-label">Homepage — Redesign Priorities</div>
+      <ul>
+        <li><strong>Hero section:</strong> Replace the social media copy paste with a single powerful headline ("Every $7.99 feeds a child for a month"), a human photo or short autoplay video (muted), and one primary CTA button: "Donate Now — Feed a Child." One decision, not five.</li>
+        <li><strong>Remove the QR code from the website</strong> — this is only useful in printed materials, not on screens.</li>
+        <li><strong>Impact counter bar:</strong> Add a scrolling stat row right below the hero — meals served, volunteers, countries, families helped — visually animated as numbers.</li>
+        <li><strong>Cut duplicate content:</strong> "Our Mission" and "Your Mission" are nearly identical. Merge into one and replace the second with a real story or video.</li>
+        <li><strong>Add a persistent "Donate" button</strong> in the navigation that stays visible on scroll. Currently there's no top-nav donation trigger.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-amber">
+      <div class="callout-label">Navigation — Restructure</div>
+      <ul>
+        <li><strong>Current:</strong> Home · Who We Are · What We Do · Make a Difference · Johnny Davis Ministries · Contact</li>
+        <li><strong>Recommended:</strong> Home · About Us · Our Work ▾ · Missions ▾ · Ways to Give · Volunteer · Blog · Contact · [Donate Button]</li>
+        <li>Separate "Johnny Davis Ministries" vs "Johnny Davis Global Missions" branding confusion — pick one identity or clearly differentiate the ministries arm on a dedicated page.</li>
+        <li>Add a <strong>mega-menu or dropdown</strong> under "Our Work" with quick links to hunger, disaster relief, clean water, trafficking, education — each linking to a dedicated page.</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-label">Design Language — Modernize</div>
+      <ul>
+        <li>Adopt a consistent color palette: deep navy + warm gold + white — conveys trust, faith, and mission without feeling corporate.</li>
+        <li>Use a proper heading hierarchy (H1 → H2 → H3) — currently headings are inconsistently sized and formatted.</li>
+        <li>Replace icon images with SVG icons or a paid icon pack for crisp scaling on all screen sizes.</li>
+        <li>Ensure all body text passes <strong>WCAG AA contrast ratio</strong> — accessibility matters for credibility and Google ranking.</li>
+        <li>Add <strong>micro-animations</strong> on scroll for impact counters and section reveals — these increase time on site and perceived professionalism.</li>
+        <li>Mobile: the current mobile nav likely needs a hamburger menu — confirm and fix any tap target size issues for all CTAs.</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 7: ARCHITECTURE -->
+  <div class="section" id="architecture">
+    <div class="section-eyebrow">Section 07</div>
+    <div class="section-title">Proposed Site Architecture</div>
+
+    <div class="arch-wrap">
+      <div class="arch-title">Recommended Page Structure</div>
+      <svg width="100%" viewBox="0 0 780 520" xmlns="http://www.w3.org/2000/svg" font-family="'DM Sans', sans-serif">
+        <!-- Home (root) -->
+        <rect x="300" y="20" width="180" height="44" rx="8" fill="#0D1B2A" stroke="#C9A84C" stroke-width="1.5"/>
+        <text x="390" y="47" text-anchor="middle" fill="white" font-size="13" font-weight="600">Home</text>
+
+        <!-- Level 2 branches -->
+        <!-- About -->
+        <line x1="390" y1="64" x2="390" y2="100" stroke="#CBD5E1" stroke-width="1"/>
+        <line x1="100" y1="100" x2="680" y2="100" stroke="#CBD5E1" stroke-width="1"/>
+        <!-- connectors -->
+        <line x1="100" y1="100" x2="100" y2="115" stroke="#CBD5E1" stroke-width="1"/>
+        <line x1="230" y1="100" x2="230" y2="115" stroke="#CBD5E1" stroke-width="1"/>
+        <line x1="390" y1="100" x2="390" y2="115" stroke="#CBD5E1" stroke-width="1"/>
+        <line x1="545" y1="100" x2="545" y2="115" stroke="#CBD5E1" stroke-width="1"/>
+        <line x1="680" y1="100" x2="680" y2="115" stroke="#CBD5E1" stroke-width="1"/>
+
+        <rect x="45" y="115" width="110" height="38" rx="7" fill="#1C3149" stroke="#2B4A6E" stroke-width="1"/>
+        <text x="100" y="138" text-anchor="middle" fill="white" font-size="12">About Us</text>
+
+        <rect x="173" y="115" width="114" height="38" rx="7" fill="#1C3149" stroke="#2B4A6E" stroke-width="1"/>
+        <text x="230" y="138" text-anchor="middle" fill="white" font-size="12">Our Work</text>
+
+        <rect x="332" y="115" width="116" height="38" rx="7" fill="#1A6B3C" stroke="#27924F" stroke-width="1"/>
+        <text x="390" y="138" text-anchor="middle" fill="white" font-size="12">Ways to Give</text>
+
+        <rect x="489" y="115" width="112" height="38" rx="7" fill="#1C3149" stroke="#2B4A6E" stroke-width="1"/>
+        <text x="545" y="138" text-anchor="middle" fill="white" font-size="12">Volunteer</text>
+
+        <rect x="626" y="115" width="108" height="38" rx="7" fill="#1C3149" stroke="#2B4A6E" stroke-width="1"/>
+        <text x="680" y="138" text-anchor="middle" fill="white" font-size="12">Blog / News</text>
+
+        <!-- Level 3 — About sub -->
+        <line x1="100" y1="153" x2="100" y2="185" stroke="#CBD5E1" stroke-width="0.8"/>
+        <rect x="45" y="185" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="100" y="205" text-anchor="middle" fill="#1A1A1A" font-size="11">Our Story</text>
+        <rect x="45" y="225" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="100" y="245" text-anchor="middle" fill="#1A1A1A" font-size="11">Meet the Team</text>
+        <rect x="45" y="265" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="100" y="285" text-anchor="middle" fill="#1A1A1A" font-size="11">Transparency</text>
+        <rect x="45" y="305" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="100" y="325" text-anchor="middle" fill="#1A1A1A" font-size="11">Partners</text>
+        <line x1="100" y1="185" x2="100" y2="337" stroke="#CBD5E1" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- Level 3 — Our Work sub -->
+        <line x1="230" y1="153" x2="230" y2="185" stroke="#CBD5E1" stroke-width="0.8"/>
+        <rect x="175" y="185" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="205" text-anchor="middle" fill="#1A1A1A" font-size="11">Feed the Hungry</text>
+        <rect x="175" y="225" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="245" text-anchor="middle" fill="#1A1A1A" font-size="11">Disaster Relief</text>
+        <rect x="175" y="265" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="285" text-anchor="middle" fill="#1A1A1A" font-size="11">Clean Water</text>
+        <rect x="175" y="305" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="325" text-anchor="middle" fill="#1A1A1A" font-size="11">Anti-Trafficking</text>
+        <rect x="175" y="345" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="365" text-anchor="middle" fill="#1A1A1A" font-size="11">Education</text>
+        <rect x="175" y="385" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="230" y="405" text-anchor="middle" fill="#1A1A1A" font-size="11">Medical Care</text>
+        <line x1="230" y1="185" x2="230" y2="417" stroke="#CBD5E1" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- Level 3 — Ways to Give sub -->
+        <line x1="390" y1="153" x2="390" y2="185" stroke="#CBD5E1" stroke-width="0.8"/>
+        <rect x="335" y="185" width="110" height="32" rx="6" fill="#E9F5EE" stroke="#A8D5B8" stroke-width="0.8"/>
+        <text x="390" y="205" text-anchor="middle" fill="#1A6B3C" font-size="11" font-weight="600">Donate Now</text>
+        <rect x="335" y="225" width="110" height="32" rx="6" fill="#E9F5EE" stroke="#A8D5B8" stroke-width="0.8"/>
+        <text x="390" y="245" text-anchor="middle" fill="#1A6B3C" font-size="11">Feed a Child</text>
+        <rect x="335" y="265" width="110" height="32" rx="6" fill="#E9F5EE" stroke="#A8D5B8" stroke-width="0.8"/>
+        <text x="390" y="285" text-anchor="middle" fill="#1A6B3C" font-size="11">Disaster Relief</text>
+        <rect x="335" y="305" width="110" height="32" rx="6" fill="#E9F5EE" stroke="#A8D5B8" stroke-width="0.8"/>
+        <text x="390" y="325" text-anchor="middle" fill="#1A6B3C" font-size="11">Monthly Giving</text>
+        <rect x="335" y="345" width="110" height="32" rx="6" fill="#E9F5EE" stroke="#A8D5B8" stroke-width="0.8"/>
+        <text x="390" y="365" text-anchor="middle" fill="#1A6B3C" font-size="11">Other Ways</text>
+        <line x1="390" y1="185" x2="390" y2="377" stroke="#A8D5B8" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- Level 3 — Volunteer sub -->
+        <line x1="545" y1="153" x2="545" y2="185" stroke="#CBD5E1" stroke-width="0.8"/>
+        <rect x="490" y="185" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="545" y="205" text-anchor="middle" fill="#1A1A1A" font-size="11">Apply to Volunteer</text>
+        <rect x="490" y="225" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="545" y="245" text-anchor="middle" fill="#1A1A1A" font-size="11">Events Calendar</text>
+        <rect x="490" y="265" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="545" y="285" text-anchor="middle" fill="#1A1A1A" font-size="11">Mission Trips</text>
+        <line x1="545" y1="185" x2="545" y2="297" stroke="#CBD5E1" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- Level 3 — Blog sub -->
+        <line x1="680" y1="153" x2="680" y2="185" stroke="#CBD5E1" stroke-width="0.8"/>
+        <rect x="625" y="185" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="680" y="205" text-anchor="middle" fill="#1A1A1A" font-size="11">Field Reports</text>
+        <rect x="625" y="225" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="680" y="245" text-anchor="middle" fill="#1A1A1A" font-size="11">Impact Stories</text>
+        <rect x="625" y="265" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="680" y="285" text-anchor="middle" fill="#1A1A1A" font-size="11">Prayer Requests</text>
+        <rect x="625" y="305" width="110" height="32" rx="6" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="680" y="325" text-anchor="middle" fill="#1A1A1A" font-size="11">Press / Media</text>
+        <line x1="680" y1="185" x2="680" y2="337" stroke="#CBD5E1" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+        <!-- Legend -->
+        <rect x="45" y="460" width="14" height="14" rx="3" fill="#0D1B2A"/>
+        <text x="65" y="472" fill="#5A5A5A" font-size="11">Root / Nav</text>
+        <rect x="150" y="460" width="14" height="14" rx="3" fill="#1C3149"/>
+        <text x="170" y="472" fill="#5A5A5A" font-size="11">Section Hub</text>
+        <rect x="270" y="460" width="14" height="14" rx="3" fill="#1A6B3C"/>
+        <text x="290" y="472" fill="#5A5A5A" font-size="11">Revenue-Critical</text>
+        <rect x="410" y="460" width="14" height="14" rx="3" fill="#F0F4F8" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="430" y="472" fill="#5A5A5A" font-size="11">Content Page</text>
+      </svg>
+    </div>
+
+    <p><strong>Recommended Tech Stack:</strong></p>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-item-role">CMS / Platform</div>
+        <div class="stack-item-name">WordPress</div>
+        <div class="stack-item-why">Full client control, largest ecosystem, nonprofit-proven</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Page Builder</div>
+        <div class="stack-item-name">Elementor Pro</div>
+        <div class="stack-item-why">Visual editor, no-code layout, popup builder for email capture</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Donations</div>
+        <div class="stack-item-name">GiveWP</div>
+        <div class="stack-item-why">Purpose-built for nonprofits, Stripe/PayPal, recurring, goal tracking</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Email Marketing</div>
+        <div class="stack-item-name">Mailchimp</div>
+        <div class="stack-item-why">Free up to 500 contacts, automation, broadcasts, integrates with WP</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">SEO</div>
+        <div class="stack-item-name">Rank Math (free)</div>
+        <div class="stack-item-why">Schema markup, meta tags, sitemap, Google Search Console integration</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Hosting</div>
+        <div class="stack-item-name">SiteGround / Kinsta</div>
+        <div class="stack-item-why">Reliable WP-optimized hosting, $10–30/month, free SSL and backups</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Forms & Volunteers</div>
+        <div class="stack-item-name">WPForms</div>
+        <div class="stack-item-why">Drag-and-drop forms, volunteer intake, contact, event RSVP</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-item-role">Events</div>
+        <div class="stack-item-name">The Events Calendar</div>
+        <div class="stack-item-why">Free plugin, clean UI, RSVP, recurring events support</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 8: ROADMAP -->
+  <div class="section" id="roadmap">
+    <div class="section-eyebrow">Section 08</div>
+    <div class="section-title">Implementation Roadmap</div>
+
+    <div class="roadmap">
+      <div class="phase-card phase-1">
+        <div class="phase-num">1</div>
+        <div class="phase-tag">Phase 1 · Quick Wins</div>
+        <h4>Fix the Critical Gaps</h4>
+        <ul>
+          <li>Apply for Google for Nonprofits ($10K/month free ads)</li>
+          <li>Add newsletter signup to current site (even just a Mailchimp embed)</li>
+          <li>Replace raw Stripe links with a branded Stripe Payment Link page with descriptions</li>
+          <li>Fix page title and meta descriptions for all 5 current pages</li>
+          <li>Add impact stats with context to homepage</li>
+          <li>Remove QR code from digital pages</li>
+          <li>Add clear "Donate" button to navigation</li>
+        </ul>
+        <span class="phase-timeline">Weeks 1–4 · No rebuild needed</span>
+      </div>
+
+      <div class="phase-card phase-2">
+        <div class="phase-num">2</div>
+        <div class="phase-tag">Phase 2 · Core Rebuild</div>
+        <h4>Move to WordPress & Rebuild</h4>
+        <ul>
+          <li>Set up WordPress + Elementor Pro + GiveWP on new hosting</li>
+          <li>Design and build all core pages with new architecture</li>
+          <li>Migrate and reorganize all existing content and photos</li>
+          <li>Build donation campaign pages (Feed a Child, Disaster Relief, etc.)</li>
+          <li>Set up email automation — welcome, receipt, impact update</li>
+          <li>Add volunteer intake form and events calendar</li>
+          <li>Implement Rank Math SEO across all pages</li>
+          <li>Launch blog with 4–6 initial posts</li>
+        </ul>
+        <span class="phase-timeline">Months 1–2 · Core investment</span>
+      </div>
+
+      <div class="phase-card phase-3">
+        <div class="phase-num">3</div>
+        <div class="phase-tag">Phase 3 · Growth Engine</div>
+        <h4>Scale Marketing & Reach</h4>
+        <ul>
+          <li>Launch Google Ad campaigns targeting humanitarian keywords</li>
+          <li>Build and publish monthly Impact Report (PDF + web)</li>
+          <li>Add multi-language support (Filipino/Tagalog)</li>
+          <li>Launch "Compassion Circle" monthly donor program</li>
+          <li>Add video testimonials from field work</li>
+          <li>Register on nonprofit directories (Charity Navigator, GiveWell)</li>
+          <li>Launch social media integration (auto-post blog to Facebook/IG)</li>
+          <li>A/B test donation page headlines and amounts</li>
+        </ul>
+        <span class="phase-timeline">Months 3–6 · Scaling phase</span>
+      </div>
+    </div>
+
+    <div class="callout callout-navy" style="margin-top: 24px;">
+      <div class="callout-label">💡 Cost Reality Check</div>
+      <p>The total investment for a proper WordPress rebuild (hosting + plugins + design + development) should run <strong>$1,500–$4,000 one-time</strong>, depending on developer rates. Ongoing costs are <strong>$20–50/month</strong> for hosting and plugins. This replaces the current ongoing developer dependency cost and delivers full client control. Google for Nonprofits alone (free $10K/month in Google Ads) more than covers this investment within the first month of activation.</p>
+    </div>
+  </div>
+
+</div><!-- end content-wrap -->
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div>
+    <strong>Johnny Davis Global Missions</strong> · Website Strategy Report · March 2026
+  </div>
+  <div>
+    Prepared for internal use · Senior Web Consultant Assessment
+  </div>
+</div>
+
+</body>
+</html>
